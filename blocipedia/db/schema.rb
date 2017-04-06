@@ -11,16 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150326021349) do
+ActiveRecord::Schema.define(version: 20160313003452) do
+
+  create_table "collaborations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "wiki_id"
+  end
+
+  add_index "collaborations", ["user_id"], name: "index_collaborations_on_user_id"
+  add_index "collaborations", ["wiki_id"], name: "index_collaborations_on_wiki_id"
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-=======
-ActiveRecord::Schema.define(version: 20160228205426) do
-
-  create_table "users", force: :cascade do |t|
->>>>>>> checkpoint-3-user-sign-in-out
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -31,27 +41,17 @@ ActiveRecord::Schema.define(version: 20160228205426) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-<<<<<<< HEAD
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-=======
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.integer  "role",                   default: 0,  null: false
+    t.integer  "collaboration_id"
+    t.string   "name"
   end
 
+  add_index "users", ["collaboration_id"], name: "index_users_on_collaboration_id"
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -63,9 +63,12 @@ ActiveRecord::Schema.define(version: 20160228205426) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "topic_id"
+    t.integer  "users_id"
   end
 
+  add_index "wikis", ["topic_id"], name: "index_wikis_on_topic_id"
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"
+  add_index "wikis", ["users_id"], name: "index_wikis_on_users_id"
 
->>>>>>> checkpoint-3-user-sign-in-out
 end
