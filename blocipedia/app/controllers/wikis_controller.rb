@@ -2,11 +2,12 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+
   end
 
   def new
@@ -56,7 +57,6 @@ class WikisController < ApplicationController
     end
   end
   private
-
 
   def wiki_params
     params.require(:wiki).permit(:title, :body)
