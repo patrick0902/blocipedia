@@ -1,24 +1,8 @@
-# == Schema Information
-#
-# Table name: wikis
-#
-#  id         :integer          not null, primary key
-#  title      :string
-#  body       :text
-#  private    :boolean
-#  user_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  topic_id   :integer
-#  users_id   :integer
-#
-
 class WikisController < ApplicationController
   before_filter :authenticate_user!
 
-
   def index
-    @wikis = policy_scope(Wiki)
+    @wikis = Wiki.all
   end
 
   def show
@@ -27,18 +11,15 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
-    @collaborations = User.all - [current_user]
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
-    @wiki.user = current_user
-    @collaborations = User.all - [@wiki.user]
   end
 
   def create
     @wiki = Wiki.new(wiki_params)
-    @wiki.user = current_user
+
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
       redirect_to @wiki
@@ -50,13 +31,15 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.assign_attributes(wiki_params)
+    @wiki.title = params[:wiki][:title]
+    @wiki.body = params[:wiki][:body]
+
     if @wiki.save
-      flash[:notice] = "Your Wiki has been created"
+      flash[:notice] = "Your wiki has been updated"
       redirect_to @wiki
     else
-      flash.now[:alert] = "There was an error saving your Wiki, please try again."
-      render :new
+      flash.now[:alert] = "Your wiki could not be saved"
+      render :edit
     end
   end
 
@@ -66,17 +49,16 @@ class WikisController < ApplicationController
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
-      redirect_to @wiki
+      redirect_to wikis_path
     else
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
       render :index
     end
   end
-
   private
 
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, user_ids: [])
+    params.require(:wiki).permit(:title, :body)
   end
 end
