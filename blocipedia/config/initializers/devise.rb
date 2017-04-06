@@ -4,13 +4,23 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
+<<<<<<< HEAD
   # config.secret_key = '077aa84b59048c8317d3ba25c8930bbbc6bf4b779ab569ba946ba26346257a0902babc2c18bf3c8d21b439dd1d8b7e72a72a7656b2a034979af5a8de5a98c2db'
+=======
+  # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
+  # by default. You can change it below and use your own secret key.
+  # config.secret_key = 'a1ab2f0a104b89660dc9c280ae3c7183375caa6899f2c8098800b153b61a6046e9c579eec53b5c78c2a455df13f7bd8872e875230ff210e77390634e024dcd02'
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
+<<<<<<< HEAD
   config.mailer_sender = 'ujkhokhar@gmail.com'
+=======
+  config.mailer_sender = 'sender@mail.com'
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -29,7 +39,11 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
+<<<<<<< HEAD
   # config.authentication_keys = [ :email ]
+=======
+  # config.authentication_keys = [:email]
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -41,12 +55,20 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
+<<<<<<< HEAD
   config.case_insensitive_keys = [ :email ]
+=======
+  config.case_insensitive_keys = [:email]
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
+<<<<<<< HEAD
   config.strip_whitespace_keys = [ :email ]
+=======
+  config.strip_whitespace_keys = [:email]
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -97,7 +119,14 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
+<<<<<<< HEAD
   # config.pepper = '61618f6cb70801d640d348aebd3ce4e1713d39d313cffbe01cbd6e60b47bed4824d26f8276eb282a963dd08eef60bc118de9703d1a29e4647efd2b9f8c4f9b3d'
+=======
+  # config.pepper = 'd10ecdb250a9f8aae87fbecb9a7de9bab44faa419661b02932fa005d5a8087c366b898cca10c2fd8854888e746dbb52aefa67b7ce3001268af5f4997b8911027'
+
+  # Send a notification email when the user's password is changed
+  # config.send_password_change_notification = false
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -119,10 +148,17 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
+<<<<<<< HEAD
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
+=======
+  config.reconfirmable = false
+
+  # Defines which key will be used when confirming an account
+  # config.confirmation_keys = [:email]
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
@@ -140,21 +176,32 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
+<<<<<<< HEAD
   config.password_length = 8..128
+=======
+  config.password_length = 6..72
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
+<<<<<<< HEAD
   # config.email_regexp = /\A[^@]+@[^@]+\z/
+=======
+  #config.email_regexp = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
 
+<<<<<<< HEAD
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 
+=======
+>>>>>>> checkpoint-3-user-sign-in-out
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
   # :failed_attempts = Locks an account after a number of failed attempts to sign in.
@@ -162,7 +209,11 @@ Devise.setup do |config|
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
+<<<<<<< HEAD
   # config.unlock_keys = [ :email ]
+=======
+  # config.unlock_keys = [:email]
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -184,13 +235,24 @@ Devise.setup do |config|
   # ==> Configuration for :recoverable
   #
   # Defines which key will be used when recovering the password for an account
+<<<<<<< HEAD
   # config.reset_password_keys = [ :email ]
+=======
+  # config.reset_password_keys = [:email]
+>>>>>>> checkpoint-3-user-sign-in-out
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
   config.reset_password_within = 6.hours
 
+<<<<<<< HEAD
+=======
+  # When set to false, does not sign a user in automatically after their password is
+  # reset. Defaults to true, so a user is signed in automatically after a reset.
+  # config.sign_in_after_reset_password = true
+
+>>>>>>> checkpoint-3-user-sign-in-out
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use
   # :sha1, :sha512 or encryptors from others authentication tools as :clearance_sha1,
@@ -253,7 +315,11 @@ Devise.setup do |config|
   # The router that invoked `devise_for`, in the example above, would be:
   # config.router_name = :my_engine
   #
+<<<<<<< HEAD
   # When using omniauth, Devise cannot automatically set Omniauth path,
+=======
+  # When using OmniAuth, Devise cannot automatically set OmniAuth path,
+>>>>>>> checkpoint-3-user-sign-in-out
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 end
