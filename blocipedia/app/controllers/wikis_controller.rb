@@ -2,11 +2,15 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @wikis = Wiki.visible_to(current_user)
+    @wikis = Wiki.all
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    unless @wiki.private == false || (current_user.admin? || current_user.premium?)
+    flash[:alert] = "You must be a premium member to view that"
+    redirect_to request.referrer
+  end
 
   end
 
@@ -32,8 +36,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
+    @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Your wiki has been updated"
@@ -59,6 +62,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end
